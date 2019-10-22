@@ -1,6 +1,7 @@
 package com.example.honeyshop;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -76,7 +77,8 @@ public class AddItem2InvoiceActivity extends AppCompatActivity {
                                 break;
                         }
                         invoiceItem=new InvoiceItem(item.getId(),item.getName(),quantity,price);
-                        MainActivity.addToInvoice(invoiceItem);
+                        AppDatabase db= Room.databaseBuilder(AddItem2InvoiceActivity.this,AppDatabase.class,"Production").allowMainThreadQueries().build();
+                        db.invoiceItemDAO().insertAll(invoiceItem);
                         startActivity(new Intent(AddItem2InvoiceActivity.this,MainActivity.class));
                     }
                 }else {
@@ -123,7 +125,8 @@ public class AddItem2InvoiceActivity extends AppCompatActivity {
                                 break;
                         }
                         invoiceItem=new InvoiceItem(item.getId(),item.getName(),quantity,price);
-                        MainActivity.addToInvoice(invoiceItem);
+                        AppDatabase db= Room.databaseBuilder(AddItem2InvoiceActivity.this,AppDatabase.class,"Production").allowMainThreadQueries().build();
+                        db.invoiceItemDAO().insertAll(invoiceItem);
                         startActivity(new Intent(AddItem2InvoiceActivity.this,MainActivity.class));
                     }
 

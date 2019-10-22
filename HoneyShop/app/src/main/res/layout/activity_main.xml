@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="40dp"
     tools:context=".MainActivity">
 
     <Button
@@ -15,6 +16,18 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/clearInvoice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_marginTop="50dp"
+        android:text="clear"
+        android:onClick="clearAll"
+        app:layout_constraintBaseline_toBaselineOf="@id/total_price_label"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <TextView
         android:id="@+id/total_price_label"
@@ -23,8 +36,8 @@
         android:paddingLeft="15dp"
         android:text="Total Price :"
         android:textSize="24dp"
-        app:layout_constraintTop_toBottomOf="@+id/addItem"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addItem" />
 
     <TextView
         android:id="@+id/total_price"
@@ -38,15 +51,13 @@
         app:layout_constraintTop_toBottomOf="@+id/addItem" />
 
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/add_2_cart_recycle_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/total_price"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/total_price" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
