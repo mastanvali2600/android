@@ -24,7 +24,7 @@ public class AddItem2InvoiceActivity extends AppCompatActivity {
     TextView a_i_2_i_name,value;
     Switch a_i_2_i_type_switch;
     Spinner a_i_2_i_type_spinner;
-    Button btn_cancel,btn_a_i_2_invoice;
+    Button btn_a_i_2_invoice;
     Item item;
     String quantity;
 
@@ -58,7 +58,7 @@ public class AddItem2InvoiceActivity extends AppCompatActivity {
                             case 1:
                                 price = Double.parseDouble(String.valueOf(value.getText()));
                                 quantity_nul = DataConverter.getGrams(item.getPrice(), Double.parseDouble(String.valueOf(value.getText())));
-                                if (quantity_nul > 1000) {
+                                if (quantity_nul >= 1000) {
                                     quantity = (quantity_nul / 1000) + "Kg ";
                                 } else {
                                     quantity = quantity_nul + " grams";
@@ -77,8 +77,7 @@ public class AddItem2InvoiceActivity extends AppCompatActivity {
                                 break;
                         }
                         invoiceItem=new InvoiceItem(item.getId(),item.getName(),quantity,price);
-                        AppDatabase db= Room.databaseBuilder(AddItem2InvoiceActivity.this,AppDatabase.class,"Production").allowMainThreadQueries().build();
-                        db.invoiceItemDAO().insertAll(invoiceItem);
+                        MainActivity.addToInvoice(invoiceItem);
                         startActivity(new Intent(AddItem2InvoiceActivity.this,MainActivity.class));
                     }
                 }else {
@@ -126,7 +125,7 @@ public class AddItem2InvoiceActivity extends AppCompatActivity {
                         }
                         invoiceItem=new InvoiceItem(item.getId(),item.getName(),quantity,price);
                         AppDatabase db= Room.databaseBuilder(AddItem2InvoiceActivity.this,AppDatabase.class,"Production").allowMainThreadQueries().build();
-                        db.invoiceItemDAO().insertAll(invoiceItem);
+                        MainActivity.addToInvoice(invoiceItem);
                         startActivity(new Intent(AddItem2InvoiceActivity.this,MainActivity.class));
                     }
 
@@ -141,7 +140,6 @@ public class AddItem2InvoiceActivity extends AppCompatActivity {
         a_i_2_i_name=findViewById(R.id.a_i_2_i_name);
         value=findViewById(R.id.value);
         a_i_2_i_type_switch=findViewById(R.id.a_i_2_i_type_switch);
-        btn_cancel=findViewById(R.id.btn_cancel);
         btn_a_i_2_invoice=findViewById(R.id.btn_a_i_2_invoice);
         a_i_2_i_type_spinner=findViewById(R.id.a_i_2_i_type_spinner);
         a_i_2_i_type_switch.setChecked(true);

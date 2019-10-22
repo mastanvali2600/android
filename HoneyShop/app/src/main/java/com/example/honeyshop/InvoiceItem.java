@@ -4,17 +4,17 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity
+//@Entity
 public class InvoiceItem {
-    @PrimaryKey
+    //@PrimaryKey
     private long id;
-    @ColumnInfo(name = "name")
+    //@ColumnInfo(name = "name")
     private String name;
-    @ColumnInfo(name = "quntity")
+    //@ColumnInfo(name = "quntity")
     private String quntity;
-    @ColumnInfo(name = "price")
+    //@ColumnInfo(name = "price")
     private double price;
-    @ColumnInfo(name = "image")
+    //@ColumnInfo(name = "image")
     private byte[] image;
     public InvoiceItem(long id, String name, String quntity, double price) {
         this.id = id;

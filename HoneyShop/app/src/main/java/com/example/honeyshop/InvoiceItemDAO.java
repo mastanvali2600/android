@@ -7,20 +7,20 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import java.util.List;
-@Dao
+//@Dao
 public interface InvoiceItemDAO {
-    @Query("SELECT * FROM InvoiceItem")
-    List<InvoiceItem> getAll();
+    //@Query("SELECT * FROM InvoiceItem")
+    //List<InvoiceItem> getAll();
 
-    @Insert
-    void insertAll(InvoiceItem... users);
+    //@Insert
+    //void insertAll(InvoiceItem... users);
 
-    @Update
-    void update(InvoiceItem item);
+    //@Update
+    //void update(InvoiceItem item);
 
-    @Delete
-    void delete(InvoiceItem item);
+    //@Delete
+    //void delete(InvoiceItem item);
 
-    @Query("Delete from InvoiceItem")
-    void deleteAll();
+    //@Query("Delete from InvoiceItem")
+    //void deleteAll();
 }

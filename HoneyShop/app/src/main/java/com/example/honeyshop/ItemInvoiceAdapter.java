@@ -29,8 +29,8 @@ public class ItemInvoiceAdapter extends RecyclerView.Adapter<ItemInvoiceViewHold
     }
 
     @Override
-    public void onBindViewHolder(ItemInvoiceViewHolder holder, int position) {
-        InvoiceItem invoiceItem=invoiceItems.get(position);
+    public void onBindViewHolder(final ItemInvoiceViewHolder holder, int position) {
+        final InvoiceItem invoiceItem=invoiceItems.get(position);
         holder.name.setText(invoiceItem.getName());
         holder.price.setText(String.valueOf(invoiceItem.getPrice()));
         holder.quantity.setText(invoiceItem.getQuntity());
@@ -39,6 +39,15 @@ public class ItemInvoiceAdapter extends RecyclerView.Adapter<ItemInvoiceViewHold
             public void onClick(View v) {
                 Toast.makeText(context,"card clicked",Toast.LENGTH_SHORT).show();
 
+            }
+        });
+        holder.remove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position=holder.getAdapterPosition();
+                invoiceItems.remove(position);
+                MainActivity.setTotal(invoiceItems);
+                notifyItemRemoved(position);
             }
         });
 

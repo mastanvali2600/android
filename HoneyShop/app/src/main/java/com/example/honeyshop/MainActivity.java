@@ -17,27 +17,24 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    TextView total_price;
+    static TextView total_price;
     Button addItem;
-    Button clearInvoice;
     private static List<InvoiceItem> invoiceItems=new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
-        total_price.setText(String.valueOf(getPrice(invoiceItems)));
+        setTotal(invoiceItems);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        AppDatabase db= Room.databaseBuilder(MainActivity.this,AppDatabase.class,"Production").allowMainThreadQueries().build();
-        recyclerView.setAdapter(new ItemInvoiceAdapter(db.invoiceItemDAO().getAll(),MainActivity.this));
+        recyclerView.setAdapter(new ItemInvoiceAdapter(invoiceItems,MainActivity.this));
         onclickListeners();
     }
     private void init(){
         recyclerView=findViewById(R.id.add_2_cart_recycle_view);
         total_price=findViewById(R.id.total_price);
         addItem=findViewById(R.id.addItem);
-        clearInvoice=findViewById(R.id.clearInvoice);
     }
     private void onclickListeners(){
         addItem.setOnClickListener(new View.OnClickListener() {
@@ -46,15 +43,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this,AddItemToListActivity.class));
             }
         });
-        clearInvoice.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                invoiceItems.clear();
-            }
 
-        });
     }
-    public double getPrice(final List<InvoiceItem> invoiceItems){
+    public static double getPrice(final List<InvoiceItem> invoiceItems){
         double price=0.0;
         for(InvoiceItem invoiceItem:invoiceItems){
             price=invoiceItem.getPrice()+price;
@@ -65,10 +56,13 @@ public class MainActivity extends AppCompatActivity {
         invoiceItems.add(invoiceItem);
 
     }
-    public void clearAll(View view){
+    public static void setTotal(List<InvoiceItem> invoiceItems){
+        total_price.setText(String.valueOf(getPrice(invoiceItems)));
+    }
+    /*public void clearAll(View view){
         AppDatabase db= Room.databaseBuilder(MainActivity.this,AppDatabase.class,"Production").allowMainThreadQueries().build();
         db.invoiceItemDAO().deleteAll();
 
     }
-
+*/
 }
