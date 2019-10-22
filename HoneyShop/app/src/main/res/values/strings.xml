@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Honey Shop</string>
+    <string-array name="kgType">
+        <item name="KG">KG</item>
+        <item name="Grams">Grams</item>
+    </string-array>
+    <string-array name="literType">
+        <item name="liter">liter</item>
+        <item name="ml">ml</item>
+    </string-array>
+    <string-array name="packetType">
+        <item name="pack">pack</item>
+    </string-array>
+    <string-array name="labels">
+        <item name="KG">KG</item>
+        <item name="Liter">Liter</item>
+        <item name="Packet">Packet</item>
+    </string-array>
+    <string-array name="values">
+        <item name="1">1</item>
+        <item name="2">2</item>
+        <item name="3">3</item>
+    </string-array>
+</resources>
