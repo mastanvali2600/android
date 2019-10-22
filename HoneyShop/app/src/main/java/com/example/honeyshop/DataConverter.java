@@ -40,6 +40,6 @@ public class DataConverter {
         return literPrice*no_of_liters;
     }
     private static double roundValue(double value){
-        return new BigDecimal(value / 1000).setScale(2, RoundingMode.HALF_UP).doubleValue();
+        return new BigDecimal(value).setScale(2, RoundingMode.HALF_UP).doubleValue();
     }
 }

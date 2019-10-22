@@ -54,20 +54,20 @@ public class AddItem2InvoiceActivity extends AppCompatActivity {
                     if(b){
                         Toast.makeText(AddItem2InvoiceActivity.this,"Please enter price value",Toast.LENGTH_SHORT).show();
                     }else {
+                        price = Double.parseDouble(String.valueOf(value.getText()));
                         switch (item.getTypeId()) {
                             case 1:
-                                price = Double.parseDouble(String.valueOf(value.getText()));
+
                                 quantity_nul = DataConverter.getGrams(item.getPrice(), Double.parseDouble(String.valueOf(value.getText())));
-                                if (quantity_nul >= 1000) {
+                                if (quantity_nul > 1001) {
                                     quantity = (quantity_nul / 1000) + "Kg ";
                                 } else {
                                     quantity = quantity_nul + " grams";
                                 }
                                 break;
                             case 2:
-                                price = Double.parseDouble(String.valueOf(value.getText()));
                                 quantity_nul = DataConverter.getMl(item.getPrice(), Double.parseDouble(String.valueOf(value.getText())));
-                                if (quantity_nul > 1000) {
+                                if (quantity_nul > 1001) {
                                     quantity = (quantity_nul / 1000) + "lit ";
                                 } else {
                                     quantity = quantity_nul + " ml";
