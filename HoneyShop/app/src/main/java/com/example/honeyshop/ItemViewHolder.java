@@ -10,12 +10,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class ItemViewHolder extends RecyclerView.ViewHolder {
     ImageView image;
-    TextView name,quantity,price;
-    CardView cardView;
+    TextView name,removeItem;
     public ItemViewHolder(@NonNull final View itemView) {
         super(itemView);
         image=itemView.findViewById(R.id.image);
         name=itemView.findViewById(R.id.name);
-        cardView=(CardView) itemView.findViewById(R.id.cardView);
+        removeItem=itemView.findViewById(R.id.removeItem);
     }
 }

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import java.util.List;
 
@@ -36,12 +37,21 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemViewHolder> {
             holder.name.setText(item.getName());
         if(item.getImage()!=null)
             holder.image.setImageBitmap(DataConverter.converByteArray2Bitmap(item.getImage()));
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
+        holder.image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(context,AddItem2InvoiceActivity.class);
                 intent.putExtra("item",item);
                 context.startActivity(intent);
+            }
+        });
+        holder.removeItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppDatabase db= Room.databaseBuilder(context,AppDatabase.class,"Production").allowMainThreadQueries().build();
+                db.itemDAO().delete(item);
+                items.remove(holder.getAdapterPosition());
+                notifyItemRemoved(holder.getAdapterPosition());
             }
         });
     }
